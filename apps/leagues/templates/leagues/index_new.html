@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sports ORM II</title>
+	<style media="screen">
+		table {
+			border='1';
+			min-width: 50%;
+		}
+		table tr:nth-child(even) {
+			background-color: #eee;
+		}
+		table tr:nth-child(odd) {
+			background-color: #fff;
+		}
+		table th {
+			color: white;
+			background-color: black;
+		}
+	</style>
+</head>
+	<body>
+		<h2>Teams In Atlantic Soccer Conference</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>Team Location</th>
+				<th>Team Name</th>
+				<th>League Name</th>
+			</tr>
+			{% for team in teamsInAtlanticSoccerConference %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ team.location }}</td>
+				<td>{{ team.team_name }}</td>
+				<td>{{ team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>Current Players On Boston Penguins</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Name</th>
+				<th>Team Location</th>
+			</tr>
+			{% for aplayer in currentPlayersOnBostonPenguins %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+				<td>{{ aplayer.curr_team.location }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>Players currently on team of International Collegiate Baseball Conference</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Name</th>
+				<th>League Name</th>
+			</tr>
+			{% for aplayer in allCurrentPlayersInInternationalCollegiateBaseballConference %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+				<td>{{ aplayer.curr_team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+		<!--  -->
+		<h2>Current players in the American Conference of Amateur Football with last name "Lopez"</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Name</th>
+				<th>League Name</th>
+			</tr>
+			{% for aplayer in currentPlayersInTheAmericanConferenceOfAmateurFootballWithLastNameOfLopez %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+				<td>{{ aplayer.curr_team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>All football players - for all time.</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Name</th>
+				<th>League Name</th>
+			</tr>
+			{% for aplayer in allFootballPlayersForAllTime %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+				<td>{{ aplayer.curr_team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>All teams have a current player named Sophia.</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>Team Name</th>
+				<th>Team Location</th>
+				<th>League Name</th>
+			</tr>
+			{% for team in teamsWithCurrentPlayerNamedSophia %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ team.team_name }}</td>
+				<td>{{ team.location }}</td>
+				<td>{{ team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>everyone with the last name "Flores" who DOESN'T (currently) play for the Washington Roughriders</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Location</th>
+				<th>Team Name</th>
+			</tr>
+			{% for aplayer in PlayerNamedFloresNotOnRoughriders %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.location }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>Teams Samuel Evens Played On</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>Team Name</th>
+				<th>Team Location</th>
+				<th>League Name</th>
+			</tr>
+			{% for team in TeamsSamuelEvensPlayedOn %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ team.team_name }}</td>
+				<td>{{ team.location }}</td>
+				<td>{{ team.league.name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>Players, past and present, with the Manitoba Tiger-Cats</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Team Location</th>
+				<th>Team Name</th>
+			</tr>
+			{% for aplayer in ManitobaTigerCats_Alumni %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.location }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+		<h2>Players who were formerly (but aren't currently) with the Wichita Vikings</h2>
+		<table>
+			<tr>
+				<th>#</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Current Team Location</th>
+				<th>Current Team Name</th>
+			</tr>
+			{% for aplayer in former_Wichita_Vikings %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ aplayer.first_name }}</td>
+				<td>{{ aplayer.last_name }}</td>
+				<td>{{ aplayer.curr_team.location }}</td>
+				<td>{{ aplayer.curr_team.team_name }}</td>
+			</tr>
+			{% empty %}
+				<p>No players found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</table>
+
+
+		<h2>every team that Jacob Gray played for before he joined the Oregon Colts</h2>
+		<h2>everyone named "Joshua" who has ever played in the Atlantic Federation of Amateur Baseball Players</h2>
+		<h2>all teams that have had 12 or more players, past and present. (HINT: Look up the Django annotate function.)</h2>
+		<h2>all players and count of teams played for, sorted by the number of teams they've played for</h2>
+		
+	</body>
+</html>
